@@ -1,0 +1,28 @@
+button.seat-available {
+    background-color: #F7F8F8;
+    color: #6b7280;
+}
+
+button.seat-selected {
+    background-color: #1DD100 !important;
+    color: #fff !important;
+}
+
+input:focus {
+    outline: 2px solid #1DD100;
+    outline-offset: 2px;
+}
+
+button:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#successModal {
+    align-items: center !important;
+    justify-content: center !important;
+}
