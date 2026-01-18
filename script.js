@@ -171,3 +171,4 @@ continueBtn.addEventListener("click", () => {
     document.querySelector("form").reset();
 });
 
+

@@ -1643,9 +1643,19 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                     </div>
                   </div>
                   <div class="flex items-center gap-2 bg-[#1DD100]/10 px-4 py-3 rounded-xl">
-                    <!-- SVG omitted for brevity -->
-                    <span class="text-[#1DD100] font-bold">40 Seats left</span>
+                    <span class="text-[#1DD100] font-bold">
+                      <span id="seatCount">40</span> Seat Booked
+                    </span>
                   </div>
+                  <div class="flex items-center gap-2 bg-[#1DD100]/10 px-4 py-3 rounded-xl">
+                    <span class="text-[#1DD100] font-bold">
+                      <span id="seatCount">40</span> Seat Left
+                    </span>
+                  </div>
+
+                  <button onclick="selectSeat()" class="mt-4 px-4 py-2 bg-green-500 text-white rounded">
+                    Seat Booked
+                  </button>
                 </div>
                 <!-- Route & Time -->
                 <div class="bg-[#F7F8F8] rounded-[24px] p-6 md:p-8">
@@ -2044,8 +2054,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         <div>
           <h3 class="text-xl font-bold mb-4">Download our app</h3><button
             class="border border-white/30 rounded-xl px-4 py-2 flex items-center gap-3 hover:bg-white/10 transition-colors"><img
-              src="./P-Ticket Bus Ticketing Website Mockup_files/Google_Play_Store_badge_EN.svg"
-              alt="Get it on Google Play" class="h-10"></button>
+              src="./images/google.png" alt="Get it on Google Play" class="h-10"></button>
         </div>
       </div>
       <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-gray-400">
