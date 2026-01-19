@@ -26,3 +26,11 @@ button:disabled {
     align-items: center !important;
     justify-content: center !important;
 }
+
+.rt-route-btn {
+    @apply bg-white border border-gray-300 px-5 py-3 rounded-xl text-sm font-semibold text-gray-700 hover:bg-black hover:text-white hover:border-black transition duration-200 shadow-sm;
+}
+
+.rt-time-btn {
+    @apply bg-gray-100 border border-gray-300 px-4 py-2 rounded-lg text-sm font-bold text-gray-800 hover:bg-black hover:text-white hover:border-black transition duration-200;
+}

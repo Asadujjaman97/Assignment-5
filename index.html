@@ -1639,7 +1639,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                     </div>
                     <div>
                       <h2 class="text-2xl font-bold text-[#030712] mb-1" id="zatra">Greenline Paribahan</h2>
-                      <p class="text-gray-500 text-sm">Coach-009-WEB ! AC_Business</p>
+                      <p class="text-gray-500 text-sm">Coach-009-WEB ! AC_Economy</p>
                     </div>
                   </div>
                   <div class="flex items-center gap-2 bg-[#1DD100]/10 px-4 py-3 rounded-xl">
@@ -1654,28 +1654,70 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                     </span>
                   </div>
 
-                  <!-- <button onclick="selectSeat()" class="mt-4 px-4 py-2 bg-green-500 text-white rounded">
-                    Seat Booked
-                  </button> -->
                 </div>
                 <!-- Route & Time -->
                 <div class="bg-[#F7F8F8] rounded-[24px] p-6 md:p-8">
+
+                  <!-- Route -->
                   <div class="flex justify-between items-center border-b border-dashed border-gray-300 pb-4 mb-4">
                     <span class="text-gray-500 font-medium">Route</span>
-                    <span id="routeText" class="text-[#030712] font-bold">Dhaka - Sylhet</span>
+                    <span id="rt_routeText" class="text-[#030712] font-bold">Dhaka - Sylhet</span>
                   </div>
+
+                  <!-- Time -->
                   <div class="flex justify-between items-center border-b border-dashed border-gray-300 pb-4 mb-4">
                     <span class="text-gray-500 font-medium">Departure Time</span>
-                    <span id="timeText" class="text-[#030712] font-bold">9:00 PM</span>
+                    <span id="rt_timeText" class="text-[#030712] font-bold">07:00 AM</span>
                   </div>
-                  <div class="flex flex-col md:flex-row gap-4 pt-2">
-                    <div onclick="selectBoarding('Laxmipur')" class="bg-gray-200 ... cursor-pointer">Boarding Point -
-                      Laxmipur</div>
-                    <div onclick="selectDropping('Bogura')" class="bg-gray-200 ... cursor-pointer">Dropping Point -
-                      Bogura</div>
-                    <span onclick="selectTime('9:00 PM')" class="text-[#030712] font-bold cursor-pointer">9:00 PM</span>
+
+                  <!-- Boarding & Dropping -->
+                  <div class="flex justify-between items-center border-b border-dashed border-gray-300 pb-4 mb-4">
+                    <span class="text-gray-500 font-medium">Boarding</span>
+                    <span id="rt_boardingText" class="text-[#030712] font-bold">Dhaka</span>
+                  </div>
+
+                  <div class="flex justify-between items-center border-b border-dashed border-gray-300 pb-4 mb-4">
+                    <span class="text-gray-500 font-medium">Dropping</span>
+                    <span id="rt_droppingText" class="text-[#030712] font-bold">Sylhet</span>
+                  </div>
+
+                  <!-- Selectors -->
+                  <div class="flex flex-col gap-4 pt-2">
+
+                    <!-- Routes -->
+                    <div class="flex flex-wrap gap-3">
+
+                      <button onclick="rt_selectRoute('Dhaka - Sylhet')" class="rt-route-btn">Dhaka – Sylhet</button>
+
+                      <button onclick="rt_selectRoute('Dhaka - Hobigonj')" class="rt-route-btn">Dhaka –
+                        Hobigonj</button>
+
+                      <button onclick="rt_selectRoute('Sylhet - Dhaka')" class="rt-route-btn">Sylhet – Dhaka</button>
+
+                      <button onclick="rt_selectRoute('Hobigonj - Dhaka')" class="rt-route-btn">Hobigonj –
+                        Dhaka</button>
+
+                    </div>
+
+
+                    <!-- Times -->
+                    <div class="flex flex-wrap gap-3 mt-6">
+
+                      <button onclick="rt_selectTime('07:00 AM')" class="rt-time-btn">07:00 AM</button>
+                      <button onclick="rt_selectTime('09:00 AM')" class="rt-time-btn">09:00 AM</button>
+                      <button onclick="rt_selectTime('11:00 AM')" class="rt-time-btn">11:00 AM</button>
+                      <button onclick="rt_selectTime('01:00 PM')" class="rt-time-btn">01:00 PM</button>
+                      <button onclick="rt_selectTime('04:00 PM')" class="rt-time-btn">04:00 PM</button>
+                      <button onclick="rt_selectTime('08:00 PM')" class="rt-time-btn">08:00 PM</button>
+                      <button onclick="rt_selectTime('10:00 PM')" class="rt-time-btn">10:00 PM</button>
+                      <button onclick="rt_selectTime('11:00 PM')" class="rt-time-btn">11:00 PM</button>
+
+                    </div>
+
+
                   </div>
                 </div>
+
               </div>
 
               <!-- Tickets Section -->
@@ -1933,27 +1975,30 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
                       <!-- Header -->
                       <div
-                        class="flex justify-between border-b border-dashed border-gray-300 pb-4 mb-4 font-bold text-[#030712]">
+                        class="grid grid-cols-3 border-b border-dashed border-gray-300 pb-4 mb-4 font-bold text-[#030712]">
                         <div>
                           Selected: <span id="selectedSeatCount">0</span>
                         </div>
-                        <div>
-                          Class: <span id="seatClass"></span>
+                        <!-- <div>
+                          Class
                         </div>
-
-                        <div>
-                          Price: <span id="seatPrice"></span>
-                        </div>
+                        <div class="text-right">
+                          Price
+                        </div> -->
                       </div>
+
+                      <!-- Seat rows (IMPORTANT: NOT GRID) -->
+                      <div id="graySeatList" class="space-y-3 text-gray-500">
+                        <!-- JS inserts grid rows here -->
+                      </div>
+
+                      <!-- Total price -->
+                      <div class="flex justify-between font-bold border-t pt-4 mt-4">
+                        <span>Total Price</span>
+                        <span id="grayTotal">BDT 0</span>
+                      </div>
+
                     </div>
-
-                    <div id="graySeatList" class="space-y-3 mb-4"></div>
-
-                    <div class="flex justify-between font-bold border-t pt-3">
-                      <span>Total Price</span>
-                      <span id="grayTotal">BDT 0</span>
-                    </div>
-
 
                     <!-- Total Price -->
                     <div class="flex justify-between items-center font-bold text-[#030712] mb-4">

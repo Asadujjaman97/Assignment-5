@@ -69,12 +69,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         selectedSeats.forEach(seat => {
             const row = document.createElement("div");
-            row.className = "flex justify-between text-gray-500";
+            row.className = "grid grid-cols-3";
 
             row.innerHTML = `
             <span>${seat.seat}</span>
             <span>${seat.class}</span>
-            <span>${seat.price}</span>
+            <span class="text-right">${seat.price}</span>
         `;
 
             list.appendChild(row);
@@ -82,6 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         totalEl.textContent = `BDT ${selectedSeats.length * SEAT_PRICE}`;
     }
+
 
     // -------------------------
     // SEAT CLICK HANDLER
@@ -193,9 +194,46 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // -------------------------
-    // INITIAL DISPLAY
-    // -------------------------
+
     updateSeatCount();
     updatePrice();
+});
+const rt_routeMap = {
+    "Dhaka - Sylhet": { boarding: "Dhaka", dropping: "Sylhet" },
+    "Dhaka - Hobigonj": { boarding: "Dhaka", dropping: "Hobigonj" },
+    "Sylhet - Dhaka": { boarding: "Sylhet", dropping: "Dhaka" },
+    "Hobigonj - Dhaka": { boarding: "Hobigonj", dropping: "Dhaka" }
+};
+
+function rt_selectRoute(route) {
+    document.getElementById("rt_routeText").innerText = route;
+
+    const data = rt_routeMap[route];
+    if (data) {
+        document.getElementById("rt_boardingText").innerText = data.boarding;
+        document.getElementById("rt_droppingText").innerText = data.dropping;
+    }
+}
+
+function rt_selectTime(time) {
+    document.getElementById("rt_timeText").innerText = time;
+}
+function rt_setActive(className, element) {
+    document.querySelectorAll('.' + className).forEach(btn => {
+        btn.classList.remove('bg-black', 'text-white', 'border-black');
+    });
+
+    element.classList.add('bg-black', 'text-white', 'border-black');
+}
+
+document.querySelectorAll('.rt-route-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+        rt_setActive('rt-route-btn', this);
+    });
+});
+
+document.querySelectorAll('.rt-time-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+        rt_setActive('rt-time-btn', this);
+    });
 });
