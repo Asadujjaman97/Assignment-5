@@ -1938,20 +1938,26 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                           Selected: <span id="selectedSeatCount">0</span>
                         </div>
                         <div>
-                          Class: <span id="seatClass">Economy</span>
+                          Class: <span id="seatClass"></span>
                         </div>
 
                         <div>
-                          Price: <span id="seatPrice">550</span>
+                          Price: <span id="seatPrice"></span>
                         </div>
                       </div>
-                      <!-- Seat rows will be inserted here dynamically -->
                     </div>
-                    <div id="selectedSeatList" class="space-y-3"></div>
+
+                    <div id="graySeatList" class="space-y-3 mb-4"></div>
+
+                    <div class="flex justify-between font-bold border-t pt-3">
+                      <span>Total Price</span>
+                      <span id="grayTotal">BDT 0</span>
+                    </div>
+
 
                     <!-- Total Price -->
                     <div class="flex justify-between items-center font-bold text-[#030712] mb-4">
-                      <span>Total Price</span>
+                      <span>Sub Total Price</span>
                       <span id="totalPrice">BDT 0</span>
                     </div>
 

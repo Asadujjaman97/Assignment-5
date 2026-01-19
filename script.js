@@ -59,6 +59,29 @@ document.addEventListener("DOMContentLoaded", () => {
         totalPriceEl.textContent = `BDT ${total}`;
         grandTotalEl.textContent = `BDT ${total}`;
     }
+    function updateGrayBox() {
+        const list = document.getElementById("graySeatList");
+        const totalEl = document.getElementById("grayTotal");
+
+        if (!list || !totalEl) return;
+
+        list.innerHTML = "";
+
+        selectedSeats.forEach(seat => {
+            const row = document.createElement("div");
+            row.className = "flex justify-between text-gray-500";
+
+            row.innerHTML = `
+            <span>${seat.seat}</span>
+            <span>${seat.class}</span>
+            <span>${seat.price}</span>
+        `;
+
+            list.appendChild(row);
+        });
+
+        totalEl.textContent = `BDT ${selectedSeats.length * SEAT_PRICE}`;
+    }
 
     // -------------------------
     // SEAT CLICK HANDLER
@@ -90,6 +113,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             updateSeatCount();
             updatePrice();
+            updateGrayBox();
+
         });
     });
 
