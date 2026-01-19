@@ -1644,18 +1644,19 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                   </div>
                   <div class="flex items-center gap-2 bg-[#1DD100]/10 px-4 py-3 rounded-xl">
                     <span class="text-[#1DD100] font-bold">
-                      <span id="seatCount">40</span> Seat Booked
-                    </span>
-                  </div>
-                  <div class="flex items-center gap-2 bg-[#1DD100]/10 px-4 py-3 rounded-xl">
-                    <span class="text-[#1DD100] font-bold">
-                      <span id="seatCount">40</span> Seat Left
+                      <span id="seatBooked">0</span> Seat Booked
                     </span>
                   </div>
 
-                  <button onclick="selectSeat()" class="mt-4 px-4 py-2 bg-green-500 text-white rounded">
+                  <div class="flex items-center gap-2 bg-[#1DD100]/10 px-4 py-3 rounded-xl">
+                    <span class="text-[#1DD100] font-bold">
+                      <span id="seatLeft">40</span> Seat Left
+                    </span>
+                  </div>
+
+                  <!-- <button onclick="selectSeat()" class="mt-4 px-4 py-2 bg-green-500 text-white rounded">
                     Seat Booked
-                  </button>
+                  </button> -->
                 </div>
                 <!-- Route & Time -->
                 <div class="bg-[#F7F8F8] rounded-[24px] p-6 md:p-8">
@@ -1933,12 +1934,14 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                       <!-- Header -->
                       <div
                         class="flex justify-between border-b border-dashed border-gray-300 pb-4 mb-4 font-bold text-[#030712]">
-                        <span>Seat
-                          <span class="bg-[#1DD100] text-white text-xs px-2 py-0.5 rounded-full ml-1"
-                            id="seatCount">0</span>
-                        </span>
-                        <span>Class</span>
-                        <span>Price</span>
+                        <div>
+                          Selected: <span id="selectedSeatCount">0</span>
+                        </div>
+                        <div>
+                          Class: <span id="seatClass">Economy</span>
+                        </div>
+
+
                       </div>
                       <!-- Seat rows will be inserted here dynamically -->
                     </div>

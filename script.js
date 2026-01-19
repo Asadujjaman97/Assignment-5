@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // -------------------------
     // CONSTANTS
     // -------------------------
+    const TOTAL_SEATS = 40;
     const SEAT_PRICE = 550;
     const COUPON_DISCOUNT = 100;
     const MAX_SEATS_NO_COUPON = 4;
@@ -16,21 +17,20 @@ document.addEventListener("DOMContentLoaded", () => {
     // -------------------------
     // ELEMENTS
     // -------------------------
-    // Only select buttons with a data-seat attribute
     const seatButtons = Array.from(document.querySelectorAll("#Tickets button")).filter(btn => btn.dataset.seat);
     const totalPriceEl = document.getElementById("totalPrice");
     const grandTotalEl = document.getElementById("grandTotal");
-    const seatCountEl = document.getElementById("seatCount");
     const couponInput = document.getElementById("couponInput");
     const applyBtn = document.getElementById("applyCoupon");
-
+    const seatBookedEl = document.getElementById("seatBooked");
+    const seatLeftEl = document.getElementById("seatLeft");
+    const selectedSeatCountEl = document.getElementById("selectedSeatCount");
     const nextBtn = document.querySelector("form button");
     const modal = document.getElementById("confirmationModal");
     const modalContent = document.getElementById("modalContent");
     const closeModalBtn = document.getElementById("closeModal");
     const successModal = document.getElementById("successModal");
     const continueBtn = document.getElementById("continueBtn");
-
 
     // -------------------------
     // INITIALIZE SEATS
@@ -44,7 +44,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // HELPER FUNCTIONS
     // -------------------------
     function updateSeatCount() {
-        seatCountEl.textContent = selectedSeats.length;
+        const booked = selectedSeats.length;
+        const left = TOTAL_SEATS - booked;
+
+        seatBookedEl.textContent = booked;
+        seatLeftEl.textContent = left;
+        selectedSeatCountEl.textContent = booked;
     }
 
     function updatePrice() {
@@ -65,7 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const seatPrice = SEAT_PRICE;
             const maxSeats = couponApplied ? MAX_SEATS_WITH_COUPON : MAX_SEATS_NO_COUPON;
 
-            // Check if seat is already selected
             const index = selectedSeats.findIndex(s => s.seat === seatNum);
 
             if (index > -1) {
@@ -112,17 +116,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // -------------------------
     if (nextBtn && modal && modalContent) {
         nextBtn.addEventListener("click", e => {
-            e.preventDefault(); // Prevent form submission
+            e.preventDefault();
 
             if (selectedSeats.length === 0) {
                 alert("Please select at least one seat.");
                 return;
             }
 
-            // Clear previous modal content
             modalContent.innerHTML = "";
 
-            // Add selected seats
             selectedSeats.forEach(s => {
                 const div = document.createElement("div");
                 div.className = "flex justify-between";
@@ -130,16 +132,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 modalContent.appendChild(div);
             });
 
-            // Add total price
             const totalDiv = document.createElement("div");
             totalDiv.className = "flex justify-between font-bold mt-4 border-t pt-2";
             const total = selectedSeats.reduce((sum, s) => sum + s.price, 0) - (couponApplied ? selectedSeats.length * COUPON_DISCOUNT : 0);
             totalDiv.innerHTML = `<span>Total</span><span>BDT ${total}</span>`;
             modalContent.appendChild(totalDiv);
 
-            // Show modal
             successModal.classList.remove("hidden");
-
         });
     }
 
@@ -148,27 +147,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // -------------------------
+    // CONTINUE BUTTON HANDLER
+    // -------------------------
+    if (continueBtn) {
+        continueBtn.addEventListener("click", () => {
+            successModal.classList.add("hidden");
+
+            selectedSeats = [];
+            couponApplied = false;
+
+            seatButtons.forEach(btn => {
+                btn.classList.remove("seat-selected");
+                btn.classList.add("seat-available");
+            });
+
+            updateSeatCount();
+            updatePrice();
+
+            document.querySelector("form").reset();
+        });
+    }
+
+    // -------------------------
     // INITIAL DISPLAY
     // -------------------------
     updateSeatCount();
     updatePrice();
 });
-continueBtn.addEventListener("click", () => {
-    successModal.classList.add("hidden");
-
-    // reset system
-    selectedSeats = [];
-    couponApplied = false;
-
-    seatButtons.forEach(btn => {
-        btn.classList.remove("seat-selected");
-        btn.classList.add("seat-available");
-    });
-
-    updateSeatCount();
-    updatePrice();
-
-    document.querySelector("form").reset();
-});
-
-
