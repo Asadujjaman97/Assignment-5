@@ -237,3 +237,12 @@ document.querySelectorAll('.rt-time-btn').forEach(btn => {
         rt_setActive('rt-time-btn', this);
     });
 });
+function rt_setActiveCard(el, type) {
+    const className = type === 'route' ? 'rt-route-card' : 'rt-time-card';
+
+    document.querySelectorAll('.' + className).forEach(card => {
+        card.classList.remove('rt-active');
+    });
+
+    el.classList.add('rt-active');
+}

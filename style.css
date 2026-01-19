@@ -27,10 +27,39 @@ button:disabled {
     justify-content: center !important;
 }
 
-.rt-route-btn {
-    @apply bg-white border border-gray-300 px-5 py-3 rounded-xl text-sm font-semibold text-gray-700 hover:bg-black hover:text-white hover:border-black transition duration-200 shadow-sm;
+.rt-route-card {
+    background: #16a34a;
+    color: white;
+    padding: 14px 22px;
+    border-radius: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+    transition: all 0.2s ease;
 }
 
-.rt-time-btn {
-    @apply bg-gray-100 border border-gray-300 px-4 py-2 rounded-lg text-sm font-bold text-gray-800 hover:bg-black hover:text-white hover:border-black transition duration-200;
+.rt-route-card:hover {
+    background: #15803d;
+    transform: translateY(-2px);
+}
+
+.rt-time-card {
+    background: #22c55e;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
+    transition: all 0.2s ease;
+}
+
+.rt-time-card:hover {
+    background: #16a34a;
+    transform: translateY(-2px);
+}
+
+.rt-active {
+    outline: 3px solid #bbf7d0;
+    transform: scale(1.05);
 }
